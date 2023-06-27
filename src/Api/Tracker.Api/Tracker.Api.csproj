@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Endpoint.cs" />
+    <Compile Remove="Endpoints\StudentEndpoints.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.7" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\Tracker.Application\Tracker.Application.csproj" />
+    <ProjectReference Include="..\..\Features\Tracker.Features\Tracker.Features.csproj" />
+  </ItemGroup>
+
+</Project>
