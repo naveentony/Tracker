@@ -49,9 +49,9 @@ namespace Tracker.Features.Account.Users
                 if (_result.IsError) return _result;
                 var user = UpdateUser.ToUsersDto(request);
                 user.UpdatedDate = DateTime.Now;
-                //var role = await _roleManager.FindByNameAsync("User");
-                //if (role != null)
-                //    user.Roles.Add(role.Id);
+                var role = await _roleManager.FindByNameAsync("User");
+                if (role != null)
+                    user.Roles.Add(role.Id);
                 await _userManager.UpdateAsync(user).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -70,11 +70,11 @@ namespace Tracker.Features.Account.Users
                  var phoneNumberToken =  await _userManager.GenerateChangePhoneNumberTokenAsync(user,user.PhoneNumber);
                     var changePhoneResult = await _userManager.ChangePhoneNumberAsync(user, request.PhoneNumber, phoneNumberToken);
                     if (!changePhoneResult.Succeeded)
-                        _result.AddError(ErrorCode.ValidationError, IdentityErrorMessages.PhoneNumber);
+                        _result.AddError(ErrorCode.ValidationError, IdentityMessages.PhoneNumber);
                 }
             }
             else
-                _result.AddError(ErrorCode.IdentityUserDoesNotExist, IdentityErrorMessages.NonExistentIdentityRole);
+                _result.AddError(ErrorCode.IdentityUserDoesNotExist, IdentityMessages.NonExistentIdentityRole);
         }
         
 

@@ -43,6 +43,7 @@ namespace Tracker.Features.Account.Roles
                 if (_result.IsError) return _result;
                 var role = Role.ToAddOrUpdateRole(request);
                 role.CreatedDate = DateTime.Now;
+                
                 await _roleManager.CreateAsync(role).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -56,7 +57,7 @@ namespace Tracker.Features.Account.Roles
             var identityRole = await _roleManager.FindByNameAsync(request.Name);
 
             if (identityRole is not null)
-                _result.AddError(ErrorCode.IdentityUserAlreadyExists, IdentityErrorMessages.RoleAlreadyExists);
+                _result.AddError(ErrorCode.IdentityUserAlreadyExists, IdentityMessages.RoleAlreadyExists);
 
             return identityRole;
         }

@@ -66,11 +66,11 @@ namespace Tracker.Features.Account.Users
                     var phoneNumberToken = await _userManager.GenerateChangePhoneNumberTokenAsync(user, user.PhoneNumber);
                     var changePhoneResult = await _userManager.ChangePhoneNumberAsync(user, request.PhoneNumber, phoneNumberToken);
                     if (!changePhoneResult.Succeeded)
-                        _result.AddError(ErrorCode.ValidationError, IdentityErrorMessages.PhoneNumber);
+                        _result.AddError(ErrorCode.ValidationError, IdentityMessages.PhoneNumber);
                 }
             }
             else
-                _result.AddError(ErrorCode.IdentityUserDoesNotExist, IdentityErrorMessages.NonExistentIdentityRole);
+                _result.AddError(ErrorCode.IdentityUserDoesNotExist, IdentityMessages.NonExistentIdentityRole);
         }
 
 

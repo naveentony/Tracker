@@ -4,7 +4,13 @@ namespace Tracker.Domain.Enums
 {
     public enum StatusType
     {
+        /// <summary>
+        /// Disable
+        /// </summary>
         Disable,
+        /// <summary>
+        /// Disable
+        /// </summary>
         Enable
     }
     public enum YesNo

@@ -15,6 +15,8 @@ global using AspNetCore.Identity.MongoDbCore.Models;
 global using MongoDB.Bson;
 global using MongoDB.Driver;
 global using MongoDB.Bson.Serialization.Attributes;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.Extensions.Configuration;
 global using System.ComponentModel.DataAnnotations.Schema;
 global using System.ComponentModel.DataAnnotations;
 
@@ -23,6 +25,7 @@ global using System.ComponentModel.DataAnnotations;
 global using Tracker.Application.Options;
 global using Tracker.Application.Enums;
 global using Tracker.Application.Shared;
+global using Tracker.Application.Extensions;
 
 
 
@@ -31,8 +34,10 @@ global using Tracker.Domain.Provider;
 global using Tracker.Domain.Dtos;
 global using Tracker.Domain.Enums;
 
-
-//global using Tracker.Features.Account.;
+global using Tracker.Features.Shared;
+global using Tracker.Features.Alerts;
+global using Tracker.Features.Manage.AssignVehicles;
+global using Tracker.Features.Account.Clients;
 
 
 

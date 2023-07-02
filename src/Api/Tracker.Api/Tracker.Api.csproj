@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Application\Tracker.Application\Tracker.Application.csproj" />
     <ProjectReference Include="..\..\Features\Tracker.Features\Tracker.Features.csproj" />
+    <ProjectReference Include="..\..\ImportData\Tracker.ImportData\Tracker.ImportData.csproj" />
   </ItemGroup>
 
 </Project>

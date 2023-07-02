@@ -5,10 +5,11 @@
     {
 
        
-        public string Token { get; set; }
-        public int ClientID { get; set; }
-        public int PlanId { get; set; }
-        public int address_id { get; set; }
+        public int UserType { get; set; }
+        public string ClientID { get; set; }
+        public string ManagerId { get; set; }
+        public string PlanId { get; set; }
+        public string address_id { get; set; }
         public string InvoicingName { get; set; }
         public object SortExpression { get; set; }
         public DateTime SiteStoppedDate { get; set; }

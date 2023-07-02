@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Tracker.Application.Abstractions;
-using Tracker.Application.Models;
-using Tracker.Features.VehicleTypes;
+using Tracker.Features.Device.VehicleTypes;
 
 namespace Tracker.Api.Endpoints
 {

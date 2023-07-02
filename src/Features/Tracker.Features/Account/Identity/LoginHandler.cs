@@ -70,11 +70,11 @@ namespace Tracker.Features.Account.Identity
             {
                 var validPassword = await _userManager.CheckPasswordAsync(identityUser, request.Password);
                 if (!validPassword)
-                    _result.AddError(ErrorCode.IncorrectPassword, IdentityErrorMessages.IncorrectPassword);
+                    _result.AddError(ErrorCode.IncorrectPassword, IdentityMessages.IncorrectPassword);
                 return identityUser;
             }
             else
-                _result.AddError(ErrorCode.IdentityUserDoesNotExist, IdentityErrorMessages.NonExistentIdentityUser);
+                _result.AddError(ErrorCode.IdentityUserDoesNotExist, IdentityMessages.NonExistentIdentityUser);
 
             return identityUser;
         }

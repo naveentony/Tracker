@@ -22,5 +22,17 @@
 
             public const string CreateRole = "/CreateRole";
         }
+        public static class Device
+        {
+            public const string DeviceUpdate = "/DeviceUpdate";
+            public const string DeviceRegister = "/DeviceRegister";
+            public const string DeviceDelete = "/DeviceDelete";
+            public const string DeviceGetAll = "/DeviceGetAll";
+            public const string DeviceGetAllbyId = "/DeviceGetAllbyId";
+        }
+        public static class Import
+        {
+            public const string ImportData = "/ImportData";
+        }
     }
 }

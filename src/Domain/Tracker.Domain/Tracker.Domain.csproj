@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -7,6 +7,7 @@
 	  <WarningsNotAsErrors>612,618</WarningsNotAsErrors>
   </PropertyGroup>
 	<ItemGroup>
+	<PackageReference Include="FluentValidation" Version="11.5.2" />
 	<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
 	<PackageReference Include="MongoDB.Driver" Version="2.19.2" />
 	<PackageReference Include="AspNetCore.Identity.MongoDbCore" Version="3.1.2" />

@@ -42,7 +42,7 @@ namespace Tracker.Features.Account.Roles
             var identityRole = await _roleManager.FindByNameAsync(request.Name);
 
             if (identityRole is null)
-                _result.AddError(ErrorCode.IdentityUserDoesNotExist, IdentityErrorMessages.NonExistentIdentityRole);
+                _result.AddError(ErrorCode.IdentityUserDoesNotExist, IdentityMessages.NonExistentIdentityRole);
 
             return identityRole;
         }
