@@ -58,3 +58,4 @@ db.createCollection(collection, {
 
 
 });
+db.getCollection(collection).createIndex({ "Location": "2dsphere" }, { unique: true });

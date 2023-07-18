@@ -14,8 +14,6 @@ namespace Tracker.Api.Registrars
         {
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(SwaggerOptions());;
-
-
         }
         private Action<Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions> SwaggerOptions()
         {

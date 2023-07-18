@@ -7,9 +7,9 @@
         public string Status { get; set; } = StatusType.Enable.ToString();
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime? UpdatedDate { get; set; }
-        public static VehicleTypeDto FromTrackerType(VehicleTypesResult trackerType)
+        public static VehicleTypesDto FromTrackerType(VehicleTypesResult trackerType)
         {
-            return new VehicleTypeDto
+            return new VehicleTypesDto
             {
                 Id = trackerType.Id,
                 Name = trackerType.Vehicle,
@@ -18,9 +18,9 @@
             };
         }
 
-        public static VehicleTypeDto FromAddOrUpdateVehicleTypeDto(AddOrUpdateVehicleType vehicleTypeDto)
+        public static VehicleTypesDto FromAddOrUpdateVehicleTypeDto(AddOrUpdateVehicleType vehicleTypeDto)
         {
-            return new VehicleTypeDto
+            return new VehicleTypesDto
             {
                 Name = vehicleTypeDto.Vehicle,
                 Amount = vehicleTypeDto.Amount,
@@ -45,7 +45,7 @@
             try
             {
                 var result = new OperationResult<IEnumerable<AddOrUpdateVehicleType>>();
-                var CollectionName = _prov.GetCollection<VehicleTypeDto>(CollectionNames.VEHICLETYPES);
+                var CollectionName = _prov.GetCollection<VehicleTypesDto>(CollectionNames.VEHICLETYPES);
                 var VehicleTyperequest = AddOrUpdateVehicleType.FromAddOrUpdateVehicleTypeDto(request);
                 VehicleTyperequest.CreatedDate = DateTime.Now;
                 await CollectionName.InsertOneAsync(VehicleTyperequest).ConfigureAwait(false);

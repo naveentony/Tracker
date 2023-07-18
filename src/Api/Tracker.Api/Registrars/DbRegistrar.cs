@@ -8,11 +8,9 @@ namespace Tracker.Api.Registrars
     {
         public void RegisterServices(WebApplicationBuilder builder)
         {
-          builder.Services.AddScoped<TrackerSettings, TrackerSettings>();
+            builder.Services.AddScoped<TrackerSettings, TrackerSettings>();
             builder.Services.AddScoped<ICollectionProvider, CollectionProvider>();
             builder.Services.Configure<TrackerSettings>(builder.Configuration.GetSection(nameof(TrackerSettings)));
-
-            
         }
     }
 }

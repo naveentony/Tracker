@@ -37,7 +37,7 @@ namespace Tracker.Domain.Provider
             var database = client.GetDatabase(_settings.DatabaseName);
             return database.GetCollection<T>(collectionName);
         }
-        public async Task<List<T>> GetCollectionListFilter<T>(string collectionName,string ColumnName,string Value)
+        public async Task<List<T>> GetCollectionListFilter<T>(string collectionName, string ColumnName, string Value)
         {
             var client = GetClient();
             var database = client.GetDatabase(_settings.DatabaseName);
@@ -48,14 +48,21 @@ namespace Tracker.Domain.Provider
         {
             var client = GetClient();
             var database = client.GetDatabase(_settings.DatabaseName);
-            var    lst  = await database.GetCollection<T>(collectionName).FindAsync(Builders<T>.Filter.Eq(ColumnName, Value)).ConfigureAwait(false);
+            var lst = await database.GetCollection<T>(collectionName).FindAsync(Builders<T>.Filter.Eq(ColumnName, Value)).ConfigureAwait(false);
             return lst.FirstOrDefault();
         }
         public MongoClient GetClient()
         {
             return new MongoClient(_settings.ConnectionString);
         }
-
+        public List<T> LinqQuery<T>(List<T> query)
+        {
+            var numberOfObjectsPerPage = 20;
+            var pageNumber = 1;
+            var result = query.Skip(numberOfObjectsPerPage * (pageNumber - 1))
+        .Take(numberOfObjectsPerPage).ToList();
+            return result;
+        }
         public async Task<(int totalPages, List<T> readOnlyList, long count)> QueryByPage<T>(IMongoCollection<T> collection, DataFilter filter)
         {
             var countFacet = AggregateFacet.Create("count",
@@ -75,7 +82,7 @@ namespace Tracker.Domain.Provider
             var Datafilter = Builders<T>.Filter.Empty;
             var DatafilterId = Builders<T>.Filter.Eq(filter.ColumnName, filter.ColumnValue);
             var aggregation = await collection.Aggregate()
-                .Match(filter.FilterID==null? Datafilter: DatafilterId)
+                .Match(filter.FilterID == null ? Datafilter : DatafilterId)
                 .Facet(countFacet, dataFacet)
                 .ToListAsync();
 

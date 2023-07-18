@@ -30,5 +30,21 @@
 
 
     }
-     
+    public enum AmountStatus
+    {
+        Paid = 0,
+        Pending= 1,
+        Processing= 2
+    }
+    public enum VehicleStatus
+    {
+        Moving,
+        Stop,
+        Idle,
+        Unreachable,
+        Towed,
+        Disabled
+    }
+
+
 }

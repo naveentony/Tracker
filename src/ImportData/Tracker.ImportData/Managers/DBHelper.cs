@@ -15,8 +15,8 @@ namespace Tracker.ImportData.Managers
 
         private static int commandTimeout = 300;
 
-        private static readonly string connectionString = "Data Source=RICKY;Initial Catalog=iTrackTest;Integrated Security=True;";//ConfigurationManager.AppSettings[name: "DbConnString"].ToString();
-
+       // private static readonly string connectionString = "Data Source=RICKY;Initial Catalog=WheelTrack;Integrated Security=True;";//ConfigurationManager.AppSettings[name: "DbConnString"].ToString();
+       private static readonly string connectionString = "Data Source=RICKY;Initial Catalog=iTrackTest;Integrated Security=True;";
         #endregion
 
         #region Public Methods

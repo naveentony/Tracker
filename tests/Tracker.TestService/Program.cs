@@ -18,30 +18,17 @@ class Program
         string uri = "mongodb+srv://Tracker:Tracker123$@tracker.gdpaihu.mongodb.net/?retryWrites=true&w=majority";
         var client = new MongoClient(uri);
         // Prereq: Create collections.
-        var database1 = client.GetDatabase("mydb1");
-        var collection1 = database1.GetCollection<BsonDocument>("foo").WithWriteConcern(WriteConcern.WMajority);
-        collection1.InsertOne(new BsonDocument("abc", 0));
-        var database2 = client.GetDatabase("mydb2");
-        var collection2 = database2.GetCollection<BsonDocument>("bar").WithWriteConcern(WriteConcern.WMajority);
-        collection2.InsertOne(new BsonDocument("xyz", 0));
-        // Step 1: Start a client session.
-        using (var session = client.StartSession())
-        {
-            // Step 2: Optional. Define options to use for the transaction.
-            var transactionOptions = new TransactionOptions(
-                writeConcern: WriteConcern.WMajority);
-            // Step 3: Define the sequence of operations to perform inside the transactions
-            var cancellationToken = CancellationToken.None; // normally a real token would be used
-            var result = session.WithTransaction(
-                (s, ct) =>
-                {
-                    collection1.InsertOne(s, new BsonDocument("abc", 1), cancellationToken: ct);
-                    collection2.InsertOne(s, new BsonDocument("xyz", 999), cancellationToken: ct);
-                    return "Inserted into collections in different databases";
-                },
-                transactionOptions,
-                cancellationToken);
-        }
+        var database1 = client.GetDatabase("Tracker");
+       
+
+       // var result = new OperationResult<IEnumerable<LiveDataResult>>();
+        var TrackDataLive = database1.GetCollection<TrackerDataLiveDto>(CollectionNames.TrackerDataLive);
+        var Vehicles = database1.GetCollection<VehiclesDto>(CollectionNames.Vehicles);
+        var DeviceTypes = database1.GetCollection<TrackerTypesDto>(CollectionNames.TrackerTypes);
+        var Users = database1.GetCollection<UsersDto>(CollectionNames.USERS);
+        var CurrentUser = Guid.Parse("73c5c313-ede4-42e3-ac20-8b81738a949b");
+        var users= Users.AsQueryable().ToList().Where(x => x.Id == CurrentUser).First();
+        var userlist = Users.AsQueryable().Where(x => x.Id == CurrentUser).First();
         //var client = new MongoClient();
         //var database = client.GetDatabase("Tracker");
         //var userDto = GetCollection<UsersDto>(CollectionNames.USERS);
@@ -68,7 +55,7 @@ class Program
         //        await session.AbortTransactionAsync();
         //    }
 
-    //}
+        //}
     }
     public static IMongoCollection<T> GetCollection<T>(string collection)
     {
@@ -165,8 +152,8 @@ class Program
 public class Person
 {
     public ObjectId Id { get; set; } //= new Guid().ToString();
-    public string Vehicle { get; set; }
+    public string? Vehicle { get; set; }
     public double Amount { get; set; }
-    public string Status { get; set; }
+    public string? Status { get; set; }
 
 }

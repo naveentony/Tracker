@@ -1,4 +1,7 @@
 ﻿
+using System.Diagnostics.Eventing.Reader;
+using Tracker.Domain.Dtos;
+
 namespace Tracker.Features.Account.Identity
 {
     public enum UserType
@@ -47,6 +50,7 @@ namespace Tracker.Features.Account.Identity
         private readonly IdentityService _identityService;
         private readonly ClientService _clientService;
         private readonly ICollectionProvider _prov;
+        public HttpContext _httpContext => new HttpContextAccessor().HttpContext;
         public RegisterHandler(UserManager<UsersDto> userManager, RoleManager<MongoRoleDto> roleManager,
             IdentityService identityService, ICollectionProvider prov, ClientService clientService)
         {
@@ -64,32 +68,27 @@ namespace Tracker.Features.Account.Identity
             {
                 var result = new OperationResult<IEnumerable<RegisterUser>>();
                 var collection = _prov.GetCollection<UsersDto>(CollectionNames.USERS);
-                var clientDto = new ClientsDto();
+               // var clientDto = new ClientsDto();
                 await ValidateUserAsync(request, collection);
                 var role = await FindRolebyNameAsync(request);
                 if (_result.IsError) return _result;
                 var userdto = RegisterUser.ToUsersDto(request);
                 userdto.CreatedDate = DateTime.Now;
-                if (userdto.UserType == 0)
+                if (userdto.UserType==0 || userdto.UserType == 1)
                 {
-                    var client = _prov.GetCollection<ClientsDto>(CollectionNames.Clients);
-                    await ValidateClientAsync(request, client);
-                    if (_result.IsError) return _result;
-                     clientDto = new ClientsDto { Name = request.Username, IsActive = "Enable", CreateDate = DateTime.UtcNow };
-                    await  _clientService.CreateClient(clientDto);
-                    userdto.ClientID = clientDto.Id;
+                    AddClientInfo(userdto);
                 }
-                else
-                    userdto.ClientID = (await _clientService.GetClient()).Id;
+               userdto.ParentId = _httpContext.GetIdentityId();
                 if (role != null)
                     userdto.Roles.Add(role.Id);
-                await _userManager.CreateAsync(userdto).ConfigureAwait(false);
+                await _userManager.CreateAsync(userdto,request.Password).ConfigureAwait(false);
                 var identityUser = (await _userManager.FindByEmailAsync(request.Email));
                 _result.Payload = LoginUser.Tologin(identityUser);
                 _result.Payload.Token = _identityService.GetJwtString(identityUser);
                 var list = new List<Token>();
                 list.Add(_result.Payload.Token);
                 await _identityService.SaveToken(identityUser, collection, list);
+                await _identityService.AssigneUserToParent(userdto.Id, collection, userdto.ParentId);
                 return _result;
 
             }
@@ -99,7 +98,14 @@ namespace Tracker.Features.Account.Identity
             }
             return _result;
         }
-
+        private  UsersDto AddClientInfo(UsersDto userdto)
+        {
+            userdto.Client = new Client
+            {
+                Name = userdto.UserName
+            };
+            return userdto;
+        }
         private async Task<MongoRoleDto> FindRolebyNameAsync(RegisterUser request)
         {
             var role = await _roleManager.FindByNameAsync(request.RoleName);
@@ -121,12 +127,12 @@ namespace Tracker.Features.Account.Identity
                 _result.AddError(ErrorCode.ValidationError, IdentityMessages.PhoneNumber);
 
         }
-        private async Task ValidateClientAsync(RegisterUser request, IMongoCollection<ClientsDto> collection)
-        {
-            var client = (await collection.FindAsync(x=>x.Name == request.Username)).FirstOrDefault();
-            if (client is not null)
-                _result.AddError(ErrorCode.ValidationError, ClinetMessages.ClientNameAlreadyExists);
-        }
+        //private async Task ValidateClientAsync(RegisterUser request, IMongoCollection<ClientsDto> collection)
+        //{
+        //    var client = (await collection.FindAsync(x=>x.Name == request.Username)).FirstOrDefault();
+        //    if (client is not null)
+        //        _result.AddError(ErrorCode.ValidationError, ClinetMessages.ClientNameAlreadyExists);
+        //}
 
 
     }

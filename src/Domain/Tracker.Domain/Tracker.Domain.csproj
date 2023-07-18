@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -6,6 +6,11 @@
     <Nullable>disable</Nullable>
 	  <WarningsNotAsErrors>612,618</WarningsNotAsErrors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DataContext.cs" />
+    <Compile Remove="Dtos\ClientsDto.cs" />
+  </ItemGroup>
 	<ItemGroup>
 	<PackageReference Include="FluentValidation" Version="11.5.2" />
 	<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />

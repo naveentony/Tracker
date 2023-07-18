@@ -23,13 +23,8 @@ namespace Tracker.Api.Registrars
             builder.Services.AddScoped<ClientService>();
             builder.Services.AddScoped<CollectionProvider>();
             builder.Services.AddScoped<DeviceTypesService>();
+            builder.Services.AddScoped<UserService>();
             
-
-
-
-
-
         }
-        
     }
 }

@@ -24,11 +24,16 @@
         }
         public static class Device
         {
-            public const string DeviceUpdate = "/DeviceUpdate";
-            public const string DeviceRegister = "/DeviceRegister";
-            public const string DeviceDelete = "/DeviceDelete";
-            public const string DeviceGetAll = "/DeviceGetAll";
-            public const string DeviceGetAllbyId = "/DeviceGetAllbyId";
+            public const string UpdateDevice = "/UpdateDevice";
+            public const string RegisterDevice = "/RegisterDevice";
+            public const string DeleteDeviceById = "/DeleteDeviceById";
+            public const string DeviceDetailsByUserId = "/DeviceDetailsByUserId";
+            public const string DeviceDetailsByDeviceNo = "/DeviceDetailsByDeviceNo";
+        }
+        public static class Live
+        {
+            public const string LiveTracking = "/LiveTracking";
+            public const string HistoryTracking = "/HistoryTracking";
         }
         public static class Import
         {

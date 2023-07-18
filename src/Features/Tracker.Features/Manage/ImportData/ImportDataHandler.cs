@@ -30,11 +30,20 @@ namespace Tracker.Features.Manage.ImportData
 
             var result = new OperationResult<IEnumerable<ImportResult>>();
             DBManager db = new DBManager();
-            var Data = db.LoadVehicleTypesData();
-            foreach (var type in Data)
-            {
-                await _deviceTypesService.AddVehicleType(type);
-            }
+            //var Data = db.LoadTrackerTypesData();
+            //await _deviceTypesService.AddTrackerTypeData(Data);
+
+            //Vehicles
+            //var Data = db.VehiclesDtoData();
+            //await _deviceTypesService.AddVehiclesData(Data);
+
+            //TrackerLive
+            var Data = db.TrackerDataLive();
+            await _deviceTypesService.AddTrackerDataLive(Data);
+            //foreach (var type in Data)
+            //{
+            //    await _deviceTypesService.AddNewDevice(type);
+            //}
             return result;
         }
 

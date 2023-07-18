@@ -6,13 +6,19 @@
     <Nullable>disable</Nullable>
 	  <WarningsNotAsErrors>612,618</WarningsNotAsErrors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Protocol\**" />
+    <EmbeddedResource Remove="Protocol\**" />
+    <None Remove="Protocol\**" />
+  </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="MediatR" Version="12.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.7" />
 	</ItemGroup>
   <ItemGroup>
+    <Folder Include="Device\AssignVehicles\" />
     <Folder Include="GeoFence\" />
-    <Folder Include="LiveTracking\" />
     <Folder Include="Payments\" />
     <Folder Include="Reports\" />
   </ItemGroup>

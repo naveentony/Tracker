@@ -29,7 +29,6 @@ namespace Tracker.Api.Endpoints
             var response = await mediator.Send(register, token);
             return TypedResults.Ok(response);
         }
-
         private async Task<IResult> CreateRole(IMediator mediator, Role role, CancellationToken token)
         {
             var result = new OperationResult<IEnumerable<GetAllRoles>>();

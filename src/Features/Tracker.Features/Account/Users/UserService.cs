@@ -23,13 +23,14 @@ namespace Tracker.Application.Services
             _provider = provider;
             _configuration = configuration;
         }
-        //public async Task<UsersDto> CreateUser(UsersDto usersDto)
-        //{
-        //    if (usersDto is not null)
-        //    {
-
-        //    }
-        //}
+        public async Task<List<Guid>> GetChaildUserList()
+        {
+            var users = _provider.GetCollection<UsersDto>(CollectionNames.USERS);
+            
+              var userData= await users.Find(x=>x.Id==_httpContext.GetIdentityId()).FirstOrDefaultAsync();
+                userData.AssigedUsers.Add(_httpContext.GetIdentityId());
+                return userData.AssigedUsers;
+        }
 
         //public async Task<UsersDto> GetDetaultClient()
         //{

@@ -8,17 +8,17 @@
         {
             _provider = provider;
         }
-        public async Task<string> AssignVehile(string VehicleId)
-        {
-            var AssignVehilce = _provider.GetCollection<AssignVehiclesDto>(CollectionNames.AssignVehicles);
-            var request = new AssignVehiclesDto
-            {
-                UserId = _httpContext.GetIdentityIdClaimValue(),
-                VehicleId = VehicleId,
-                CreateDate = DateTime.UtcNow
-            };
-            await AssignVehilce.InsertOneAsync(request);
-            return request.Id;
-        }
+        //public async Task<string> AssignVehile(string VehicleId)
+        //{
+        //    var AssignVehilce = _provider.GetCollection<AssignVehiclesDto>(CollectionNames.AssignVehicles);
+        //    var request = new AssignVehiclesDto
+        //    {
+        //        UserId = _httpContext.GetIdentityId(),
+        //        VehicleId = VehicleId,
+        //        CreateDate = DateTime.UtcNow
+        //    };
+        //    await AssignVehilce.InsertOneAsync(request);
+        //    return request.Id;
+        //}
     }
 }

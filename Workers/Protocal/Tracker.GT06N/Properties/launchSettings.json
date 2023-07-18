@@ -1,0 +1,11 @@
+﻿{
+  "profiles": {
+    "Tracker.GT06N": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

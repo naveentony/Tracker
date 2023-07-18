@@ -28,7 +28,6 @@ namespace Tracker.Application.Abstractions
 
                 return Results.BadRequest(apiError);
             }
-
             apiError.StatusCode = 400;
             apiError.StatusPhrase = "Bad request";
             apiError.Timestamp = DateTime.Now;

@@ -1,4 +1,6 @@
-﻿namespace Tracker.Features.Device.VehicleTypes
+﻿using MongoDB.Driver;
+
+namespace Tracker.Features.Device.VehicleTypes
 {
 
     public class RemoveVehicleType : IRequest<OperationResult<Unit>>
@@ -22,10 +24,10 @@
             try
             {
                 var result = new OperationResult<IEnumerable<RemoveVehicleType>>();
-                var CollectionName = _prov.GetCollection<VehicleTypeDto>(CollectionNames.VEHICLETYPES);
+                var CollectionName = _prov.GetCollection<VehicleTypesDto>(CollectionNames.VEHICLETYPES);
                 //var VehicleTyperequest = VehicleTypeDto.FromAddOrUpdateVehicleTypeDto(request);
                 //VehicleTyperequest.CreatedDate = DateTime.Now;
-                await CollectionName.DeleteOneAsync(Builders<VehicleTypeDto>
+                await CollectionName.DeleteOneAsync(Builders<VehicleTypesDto>
                                     .Filter.Eq("Id", ObjectId.Parse(request.Id))).ConfigureAwait(false);
             }
             catch (Exception e)

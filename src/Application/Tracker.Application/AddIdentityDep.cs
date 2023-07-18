@@ -11,7 +11,7 @@ using Tracker.Domain.Settings;
 
 namespace Tracker.Application
 {
-    public static class AddIdentityDep
+    public static class ApplicationIdentity
     {
         public static IServiceCollection Identity(this WebApplicationBuilder builder)
         {

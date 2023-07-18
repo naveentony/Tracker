@@ -13,14 +13,12 @@ namespace Tracker.Api.Registrars
     {
         public void RegisterServices(WebApplicationBuilder builder)
         {
-            var cs= builder.Configuration.GetRequiredSection("TrackerSettings").Get<TrackerSettings>();
+            var cs = builder.Configuration.GetRequiredSection("TrackerSettings").Get<TrackerSettings>();
             builder.Identity();
             var jwtSettings = new JwtSettings();
             builder.Configuration.Bind(nameof(JwtSettings), jwtSettings);
-
             var jwtSection = builder.Configuration.GetSection(nameof(JwtSettings));
             builder.Services.Configure<JwtSettings>(jwtSection);
-
             builder.Services
                 .AddAuthentication(a =>
                 {
@@ -45,10 +43,7 @@ namespace Tracker.Api.Registrars
                     jwt.Audience = jwtSettings.Audiences[0];
                     jwt.ClaimsIssuer = jwtSettings.Issuer;
                 });
-
             builder.Services.AddAuthorization();
-
-            
         }
     }
 }

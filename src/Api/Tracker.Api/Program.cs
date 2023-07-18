@@ -4,9 +4,6 @@ using Tracker.Features;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.RegisterServices();
-// Add services to the container.
-
-
 // Registers handlers and mediator types from the specified assemblies.
 builder.Services.AddMediatR(cfg =>
 {

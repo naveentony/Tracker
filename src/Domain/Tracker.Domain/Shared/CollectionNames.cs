@@ -6,11 +6,13 @@
         public static readonly string Clients = "Clients";
         public static readonly string USERS = "Users";
         public static readonly string ROLES = "Roles";
-        public static readonly string TrackData = "TrackData";
-        public static readonly string TrackDataLive = "TrackDataLive";
-        public static readonly string NewDeviceVehicles = "NewDeviceVehicles";
+        public static readonly string TrackerData = "TrackerData";
+        public static readonly string TrackerDataLive = "TrackerDataLive";
+        public static readonly string Vehicles = "Vehicles";
         public static readonly string AssignVehicles = "AssignVehicles";
-        public static readonly string DeviceTypes = "DeviceTypes";
+        public static readonly string TrackerTypes = "TrackerTypes";
+
+        
 
     }
 

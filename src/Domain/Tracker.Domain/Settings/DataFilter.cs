@@ -4,6 +4,9 @@ namespace Tracker.Domain.Settings
 {
     public class DataFilter
     {
+        public DataFilter() { 
+             
+        }
         //public DataFilter(int pageNumber,int pageSize,string filterId,string orderBy,string columnName,string columnValue) { 
         // PageNumber = pageNumber;
         //    PageSize = pageSize;
@@ -19,8 +22,8 @@ namespace Tracker.Domain.Settings
         public string ColumnName { get; set; }
         public string ColumnValue { get; set; }
 
-        public static DataFilter Filters() {
-            return new DataFilter { PageNumber = 1, PageSize = 10, Orderby="Name" };
+        public static DataFilter Filters(string ColumnName="",string ColumnValue = "") {
+            return new DataFilter { PageNumber = 1, PageSize = 10, Orderby="Name", ColumnName= ColumnValue, ColumnValue= ColumnValue };
         }
     }
 }

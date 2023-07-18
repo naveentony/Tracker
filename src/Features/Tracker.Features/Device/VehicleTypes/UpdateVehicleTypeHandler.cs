@@ -17,12 +17,12 @@
             try
             {
                 var result = new OperationResult<IEnumerable<AddOrUpdateVehicleType>>();
-                var CollectionName = _prov.GetCollection<VehicleTypeDto>(CollectionNames.VEHICLETYPES);
+                var CollectionName = _prov.GetCollection<VehicleTypesDto>(CollectionNames.VEHICLETYPES);
                 var VehicleTyperequest = AddOrUpdateVehicleType.FromAddOrUpdateVehicleTypeDto(request);
                 VehicleTyperequest.UpdatedDate = DateTime.Now;
-                await CollectionName.FindOneAndUpdateAsync(Builders<VehicleTypeDto>
+                await CollectionName.FindOneAndUpdateAsync(Builders<VehicleTypesDto>
                                     .Filter.Eq("Id", ObjectId.Parse(VehicleTyperequest.Id)),
-                                     Builders<VehicleTypeDto>.Update.Set("Vehicle", VehicleTyperequest.Name)
+                                     Builders<VehicleTypesDto>.Update.Set("Name", VehicleTyperequest.Name)
                                     .Set("Amount", VehicleTyperequest.Amount)
                                     .Set("Status", VehicleTyperequest.Status)
                                     .Set("UpdatedDate", VehicleTyperequest.UpdatedDate)).ConfigureAwait(false); ;

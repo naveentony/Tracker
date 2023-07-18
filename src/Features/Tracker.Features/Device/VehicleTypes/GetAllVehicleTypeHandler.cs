@@ -8,7 +8,7 @@ namespace Tracker.Features.Device.VehicleTypes
         public string Vehicle { get; set; } = string.Empty;
         public double Amount { get; set; }
         public string Status { get; set; } = StatusType.Enable.ToString();
-        public static VehicleTypesResult FromTrackerTypeDto(VehicleTypeDto trackerTypedto)
+        public static VehicleTypesResult FromTrackerTypeDto(VehicleTypesDto trackerTypedto)
         {
             return new VehicleTypesResult
             {
@@ -19,7 +19,7 @@ namespace Tracker.Features.Device.VehicleTypes
 
             };
         }
-        public static List<VehicleTypesResult> FromTrackerTypeList(List<VehicleTypeDto> list)
+        public static List<VehicleTypesResult> FromTrackerTypeList(List<VehicleTypesDto> list)
         {
             var trackerTypes = new List<VehicleTypesResult>();
             list.ForEach(tt
@@ -46,7 +46,7 @@ namespace Tracker.Features.Device.VehicleTypes
         {
 
             var result = new OperationResult<IEnumerable<VehicleTypesResult>>();
-            var CollectionName = _prov.GetCollection<VehicleTypeDto>(CollectionNames.VEHICLETYPES);
+            var CollectionName = _prov.GetCollection<VehicleTypesDto>(CollectionNames.VEHICLETYPES);
             var filter = DataFilter.Filters();
             var data = await _prov.QueryByPage(CollectionName, filter);
             result.Payload = VehicleTypesResult.FromTrackerTypeList(data.readOnlyList);

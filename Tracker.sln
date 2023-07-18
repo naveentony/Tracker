@@ -19,13 +19,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Features", "Features", "{57
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{0E32ED6D-E392-4205-A473-246C27A97DF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker.Api", "src\Api\Tracker.Api\Tracker.Api.csproj", "{21F51FA3-2676-47C4-89D7-E4BF5FADB4E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracker.Api", "src\Api\Tracker.Api\Tracker.Api.csproj", "{21F51FA3-2676-47C4-89D7-E4BF5FADB4E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker.Application", "src\Application\Tracker.Application\Tracker.Application.csproj", "{462F7D30-892A-42E2-82E2-908FBB5EBE37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracker.Application", "src\Application\Tracker.Application\Tracker.Application.csproj", "{462F7D30-892A-42E2-82E2-908FBB5EBE37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker.Domain", "src\Domain\Tracker.Domain\Tracker.Domain.csproj", "{145913FD-2535-4B00-91B8-59436A73E443}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracker.Domain", "src\Domain\Tracker.Domain\Tracker.Domain.csproj", "{145913FD-2535-4B00-91B8-59436A73E443}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker.Features", "src\Features\Tracker.Features\Tracker.Features.csproj", "{15B34B59-E896-49EE-B221-30F38AC00AC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracker.Features", "src\Features\Tracker.Features\Tracker.Features.csproj", "{15B34B59-E896-49EE-B221-30F38AC00AC3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2BCB6649-9634-49FE-B7A1-36DD5069D388}"
 	ProjectSection(SolutionItems) = preProject
@@ -34,15 +34,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1FCA2D66-B004-452F-B455-071AD9066808}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker.TestService", "tests\Tracker.TestService\Tracker.TestService.csproj", "{6C6B3F14-1A3D-49CF-88C2-760A2F94CD6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracker.TestService", "tests\Tracker.TestService\Tracker.TestService.csproj", "{6C6B3F14-1A3D-49CF-88C2-760A2F94CD6F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ImportData", "ImportData", "{33732276-7ADF-4C66-ABD0-60A890DB9B8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker.ImportData", "src\ImportData\Tracker.ImportData\Tracker.ImportData.csproj", "{9A301025-3370-42BF-8083-80A7467C868D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracker.ImportData", "src\ImportData\Tracker.ImportData\Tracker.ImportData.csproj", "{9A301025-3370-42BF-8083-80A7467C868D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{8EC7C65D-ED99-46B6-A50B-DCD9B3F8F9C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker.Database", "src\Database\Tracker.Database\Tracker.Database.csproj", "{D673C746-C1A8-44E1-9AA9-1D2692609896}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracker.Database", "src\Database\Tracker.Database\Tracker.Database.csproj", "{D673C746-C1A8-44E1-9AA9-1D2692609896}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Protocal", "Protocal", "{C897A38C-A831-41E1-9145-074159A26020}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker.GT06N", "Workers\Protocal\Tracker.GT06N\Tracker.GT06N.csproj", "{285D9149-3D69-4AA8-81EF-2105E5ACD079}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalReferences", "ExternalReferences", "{46545BFF-7409-48B8-98DE-F6457D8AA494}"
+	ProjectSection(SolutionItems) = preProject
+		ExternalReferences\tcpServer.dll = ExternalReferences\tcpServer.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +87,10 @@ Global
 		{D673C746-C1A8-44E1-9AA9-1D2692609896}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D673C746-C1A8-44E1-9AA9-1D2692609896}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D673C746-C1A8-44E1-9AA9-1D2692609896}.Release|Any CPU.Build.0 = Release|Any CPU
+		{285D9149-3D69-4AA8-81EF-2105E5ACD079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{285D9149-3D69-4AA8-81EF-2105E5ACD079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{285D9149-3D69-4AA8-81EF-2105E5ACD079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{285D9149-3D69-4AA8-81EF-2105E5ACD079}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +110,8 @@ Global
 		{9A301025-3370-42BF-8083-80A7467C868D} = {33732276-7ADF-4C66-ABD0-60A890DB9B8A}
 		{8EC7C65D-ED99-46B6-A50B-DCD9B3F8F9C4} = {E96FECEB-A2D6-48A2-8973-A15B7D7CF9F2}
 		{D673C746-C1A8-44E1-9AA9-1D2692609896} = {8EC7C65D-ED99-46B6-A50B-DCD9B3F8F9C4}
+		{C897A38C-A831-41E1-9145-074159A26020} = {5622A3C8-D1E0-492D-B9C4-1B0B1C3823DD}
+		{285D9149-3D69-4AA8-81EF-2105E5ACD079} = {C897A38C-A831-41E1-9145-074159A26020}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BAB422D0-1685-4A53-840B-57C3B8C62B37}

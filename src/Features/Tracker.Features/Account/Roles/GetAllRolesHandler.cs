@@ -9,7 +9,7 @@ namespace Tracker.Features.Account.Roles
 {
     public class GetAllRoles : MongoRoleDto
     {
-
+      
         public static List<GetAllRoles> ToGetAllRoles(List<MongoRoleDto> roles)
         {
             var list = new List<GetAllRoles>();
@@ -29,6 +29,7 @@ namespace Tracker.Features.Account.Roles
     }
     public class GetAllRolesQuery : IRequest<OperationResult<IEnumerable<GetAllRoles>>>
     {
+
     }
     public class GetAllRolesHandler : IRequestHandler<GetAllRolesQuery, OperationResult<IEnumerable<GetAllRoles>>>
     {

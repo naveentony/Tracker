@@ -35,6 +35,14 @@ namespace Tracker.Features.Account.Identity
             var update = Builders<UsersDto>.Update.Set(u => u.Tokens, list);
             await collection.UpdateOneAsync(filter, update);
         }
+        public async Task AssigneUserToParent(Guid ChildID, IMongoCollection<UsersDto> collection, Guid ParentID)
+        {
+          var result=  collection.Find(x => x.Id == ParentID).FirstOrDefault();
+            result.AssigedUsers.Add(ChildID);
+            var filter = Builders<UsersDto>.Filter.Eq(u => u.Id, ParentID);
+            var update = Builders<UsersDto>.Update.Set(u => u.AssigedUsers, result.AssigedUsers);
+            await collection.UpdateOneAsync(filter, update);
+        }
         public Token GetJwtString(UsersDto userProfile)
         {
             var result = new Token();
@@ -43,10 +51,10 @@ namespace Tracker.Features.Account.Identity
             new Claim(JwtRegisteredClaimNames.Sub, userProfile.Email),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(JwtRegisteredClaimNames.Email, userProfile.Email),
-            new Claim("ClientId", userProfile.ClientID),
-            new Claim("ManagerId", userProfile.ManagerId==null?"":userProfile.ManagerId),
+            new Claim("RoleId", userProfile.Roles[0].ToString()),
+            new Claim("UserType", userProfile.UserType.ToString()),
+            new Claim("ParentID", userProfile.ParentId.ToString()),
             new Claim("IdentityId", userProfile.Id.ToString()),
-
             });
             var token = CreateSecurityToken(claimsIdentity);
             result.LoginProvider = token.Issuer;
@@ -54,6 +62,7 @@ namespace Tracker.Features.Account.Identity
             result.Value = WriteToken(token);
             return result;
         }
+       
 
         private SecurityTokenDescriptor GetTokenDescriptor(ClaimsIdentity identity)
         {

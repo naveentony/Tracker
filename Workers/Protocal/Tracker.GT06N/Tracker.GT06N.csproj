@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-Tracker.GT06N-191c2f04-8126-4f92-b6f1-8d3777d32fb4</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+	<PackageReference Include="MongoDB.Driver" Version="2.19.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Domain\Tracker.Domain\Tracker.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="tcpServer">
+      <HintPath>..\..\..\ExternalReferences\tcpServer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

@@ -14,7 +14,6 @@ namespace Tracker.Api.Extensions
                 registrar.RegisterServices(builder);
             }
         }
-
         public static void RegisterEndpointDefinitions(this WebApplication app)
         {
             var endpointDefinitions = typeof(Program).Assembly
@@ -28,10 +27,9 @@ namespace Tracker.Api.Extensions
                 endpointDef.RegisterEndpoints(app);
             }
         }
-
         private static IEnumerable<IRegistrar> GetRegistrars()
         {
-            
+
             var scanningType = typeof(Program);
             return scanningType.Assembly.GetTypes()
                 .Where(t => t.IsAssignableTo(typeof(IRegistrar)) && !t.IsAbstract && !t.IsInterface)

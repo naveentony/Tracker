@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using MongoDB.Driver.Linq;
+using System.Text.Json.Serialization;
 
 namespace Tracker.Application.Models
 {
@@ -17,6 +18,15 @@ namespace Tracker.Application.Models
         {
             HandleError(code, message);
         }
+        public T SetResult(T data)
+        {
+            
+            CurrentPage = 1;
+            TotalPages = 1;
+            PageSize = 10;
+            TotalCount = 10;
+            return Payload = data;
+        }
 
         /// <summary>
         /// Adds a default error to the Error list with the error code UnknownError
@@ -26,6 +36,7 @@ namespace Tracker.Application.Models
         {
             HandleError(ErrorCode.UnknownError, message);
         }
+        
 
         /// <summary>
         /// Sets the IsError flag to default (false)
@@ -42,20 +53,37 @@ namespace Tracker.Application.Models
             Errors.Add(new Error { Code = code, Message = message });
             IsError = true;
         }
-        [JsonIgnore]
-        public int CurrentPage { get; private set; }
-        [JsonIgnore]
+
+       
+        public int CurrentPage { get;  set; }
+      
         public int TotalPages { get;  set; }
-        [JsonIgnore]
-        public int PageSize { get; private set; }
-        [JsonIgnore]
+      
+        public int PageSize { get;  set; }
+       
         public long TotalCount { get;  set; }
-        [JsonIgnore]
+        
         public bool HasPrevious => CurrentPage > 1;
-        [JsonIgnore]
+      
         public bool HasNext => CurrentPage < TotalPages;
 
 
         #endregion
+    }
+    public static class PagingExtensions
+    {
+        //used by LINQ to SQL
+        public static IQueryable<TSource> Page<TSource>(this IQueryable<TSource> source, int page, int pageSize)
+        {
+            
+            return source.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+        //used by LINQ
+        public static IEnumerable<TSource> Page<TSource>(this IEnumerable<TSource> source, int page, int pageSize)
+        {
+            return source.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
     }
 }

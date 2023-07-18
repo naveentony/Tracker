@@ -11,7 +11,7 @@ namespace Tracker.Features.Account.Users
     public class UsersResult : UsersDto
     {
 
-        public static UsersResult FromTrackerTypeDto(VehicleTypeDto trackerTypedto)
+        public static UsersResult FromTrackerTypeDto(VehicleTypesDto trackerTypedto)
         {
             return new UsersResult
             {
